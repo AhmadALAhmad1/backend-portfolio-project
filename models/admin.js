@@ -1,0 +1,1 @@
+// this is where i'll do the model for create and getall
