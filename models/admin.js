@@ -5,19 +5,19 @@ const adminSchema = new Schema(
 {
     name: {
     type: String,
-    required: true
+    // required: true
 },
     email: {
         type: String,
-        required: true
+        // required: true
 },
     password: {
     type: String,
-    required: true
+    // required: true
 },
     title: {
         type: String,
-        required: true
+        // required: true
 },
     LinkedinUrl: {
     type: String,

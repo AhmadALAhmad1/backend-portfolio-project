@@ -7,8 +7,8 @@ import controller from '../controllers/admin.js'
 // import createAdmin from '.././controllers/admin.js';
 
 
-router.get('/list', controller.listAdmins) //get all admins
-router.get('/get/:id', controller.getAdminById) // get specific admin
-router.post('/list', controller.createAdmin) //create a new admin
+router.get('/', controller.listAdmins) //get all admins
+router.get('/:id', controller.getAdminById) // get specific admin
+router.post('/create', controller.createAdmin) //create a new admin
 
 export default router;
