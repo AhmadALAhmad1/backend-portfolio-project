@@ -7,3 +7,5 @@ router.get('/:id', controller.get);
 
 
 export default router;
+
+export default router;
