@@ -6,6 +6,7 @@ import Model from "../models/info.js";
 
 
 class Controller {
+
   //get All
   async getAll(req, res, next) {
     try {
@@ -59,24 +60,25 @@ class Controller {
 
     const body = req.body;
 
-    if (!body.title) res.status(400).send({ success: false, response: "title is required" });
-    if (!body.description) res.status(400).send({ success: false, response: "description is required" });
-    if (!body.name) res.status(400).send({ success: false, response: "name is required" });
-    if (!body.Url) res.status(400).send({ success: false, response: "Url is required" });
-    if (!body.section) res.status(400).send({ success: false, response: "section is required" });
+    // if (!body.title) res.status(400).send({ success: false, response: "title is required" });
+    // if (!body.description) res.status(400).send({ success: false, response: "description is required" });
+    // if (!body.name) res.status(400).send({ success: false, response: "name is required" });
+    // if (!body.Url) res.status(400).send({ success: false, response: "Url is required" });
+    // if (!body.section) res.status(400).send({ success: false, response: "section is required" });
+
     try {
 
       const doc = new Model(body);
-      await doc.save()
+      const new_date = await doc.save()
 
-      return res.status(200).json({ success: true, response });
+      return res.status(200).json({ success: true, new_date });
     }
 
     catch (err) {
       return res.status(500).json({
         status: 500,
         success: false,
-        data: err
+        data: err.message
       })
     }
   }
@@ -146,3 +148,5 @@ class Controller {
 const controller = new Controller();
 
 export default controller;
+
+
