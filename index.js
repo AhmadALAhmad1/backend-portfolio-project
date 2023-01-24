@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 })
 
 
-// app.use('/api/admin', adminRouter);
+app.use('/api/admin', adminRouter);
 // app.use('/api/admin', infoRouter);
 
 

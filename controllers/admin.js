@@ -6,23 +6,13 @@ class Controller{
 // for update 
 updateAdmin = async(req, res) => {
     
-    const id = parseInt(req.params.id)
     
     try {
+        let body = req.body;
         
-        const adminToBeUpdated = await Admin.find((item) => 
-        item.id === id);
-        if(!adminToBeUpdated) return res.status(404).json({status:404, error:true, message:`the admin ${id} does not exist`});
-        adminToBeUpdated.email= req.query.email;
-        adminToBeUpdated.password= req.query.password;
-        adminToBeUpdated.name= req.query.name;
-        adminToBeUpdated.LinkedinUrl= req.query.LinkedinUrl;
-        adminToBeUpdated.InstagramUrl= req.query.InstagramUrl;
-        adminToBeUpdated.GithubUrl= req.query.GithubUrl;
-        adminToBeUpdated.title=req.query.title;
-     
-        return res.status(200).json({status:200 , message: Admin})
-        
+        let Admin = Admin(body);
+        const admin = await Admin.save();
+        return res.status(200).json({ success: true })
     } 
     catch(error){
         return res.json({ error: error.message })
@@ -45,7 +35,8 @@ deleteAdmin= async(req, res) => {
     {
     return res.status(404).json({status:404, error:true, message:`The admin with id = ${n} does not exist`})
     }
-        }
+    
+    }
      catch(error){
         return res.json({ error: error.message })
     }
