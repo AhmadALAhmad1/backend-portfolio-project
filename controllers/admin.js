@@ -32,7 +32,7 @@ updateAdmin = async(req, res) => {
     try {
         
      
-        return res.status(200).json({status:200 , message:`updated successfuly`})
+        return res.status(200).json({status:200 , message:`${Admin()}`})
         
     } 
     catch(error){
