@@ -33,10 +33,10 @@ getAdminById = async(req, res) => {
         })
         
     } catch(error){
-        return res.status(500).json({   //why 500 ? error with internal server
+        return res.status(500).json({  
             status:500,
             success:false,
-            data:adminWithChosenId     // do we want all these returned? 
+            data:adminWithChosenId  
          })
     }
 }

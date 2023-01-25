@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 5000;
 
 const app = new express();
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }))
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan('dev'));
