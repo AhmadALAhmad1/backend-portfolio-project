@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
@@ -31,6 +30,33 @@ const infoSchema = new Schema(
             required: true
         },
     },
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    Url: {
+      type: String,
+      
+    },
+    image: {
+      type: String,
+    },
+    languages: [String],
+
+    section: {
+      type: String,
+      required: true,
+    },
+  },
 
     { collection: "info", timestamps: true },
 );
