@@ -1,19 +1,66 @@
+import admin from "../models/admin.js"
 
-import mongoose from "mongoose";
+class Controller{
+    
+createAdmin = async(req, res) => {
+    if(!req.body){
+        res.status(400).json({message:error})
+    }
+    else{
+        console.log("admin was created");
+        const createdAdmin= await admin.create(req.body)
+        console.log(createdAdmin)
+        return res.status(200).json(createdAdmin);
+    }   
+    
+}
 
-const connectDB = async () => {
+
+getAdminById = async(req, res) => {
+    const {id} = req.params
     try {
-        mongoose.set('strictQuery', false);
-        await mongoose.connect(process.env.MONGO_URL, {
-            useUnifiedTopology: true,
-            dbName: process.env.DB_NAME
+        const adminWithChosenId = await admin.findById(id);
+        if(!id)
+            return res.status(404).json({
+                status:404,
+                success:false,
+                data:`admin with id=${id} doesn't exist` 
         })
-
-        console.log(`Connected Successfuly to Database :)`);
-    } catch (error) {
-        console.log(`Error: ${error.message}`)
-        process.exit();
+        return res.status(200).json({
+            status:200,
+            success:true,
+            data:adminWithChosenId 
+        })
+        
+    } catch(error){
+        return res.status(500).json({   //why 500 ? error with internal server
+            status:500,
+            success:false,
+            data:adminWithChosenId     // do we want all these returned? 
+         })
     }
 }
 
-export default connectDB;
+
+async listAdmins (req,res){
+    try {
+       
+        const allAdmins = await admin.find();
+        console.log("admin ",allAdmins)
+        return res.status(200).json({
+            status:200,
+            success:true,
+            data: allAdmins
+        })
+    }
+        catch(error)
+    { 
+        return res.json({ 
+            status:500,
+            success:false,
+            data:error
+         })
+    }
+}}
+const controller = new Controller()
+export default controller;

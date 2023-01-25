@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
@@ -29,7 +28,7 @@ const adminSchema = new Schema(
     },
 
     {
-        collection: 'admins',
+        collection: 'admin',
         timestamps: true,
     }
 
