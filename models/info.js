@@ -1,46 +1,39 @@
 
-import mongoose from 'mongoose';
-const {Schema, model} = mongoose;
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 const infoSchema = new Schema(
-{
-    name: {
-    type: String,
-    required: true
-},
-    description: {
-        type: String,
-        required: true
-},
-    title: {
-        type: String,
-        required: true
-},
-    Url: {
-    type: String,
-    require: true
-},
-    image: {
-        type: String,
-        
-        
-},
-    languages: [{
+    {
+        name: {
+            type: String,
+            required: true,
+        },
 
-    }],
-    
-    section: {
-    type: String,
-},
-    
-},
+        description: {
+            type: String,
+            required: true,
+        },
+        title: {
+            type: String,
+            required: true,
+        },
+        Url: {
+            type: String,
+            required: true,
+        },
+        image: {
+            type: String,
+        },
+        languages: [String],
 
-{
-collection: 'info',
-timestamps: true
-}
+        section: {
+            type: String,
+            required: true
+        },
+    },
 
+    { collection: "info", timestamps: true },
 );
 
-const Info = model('Info', infoSchema);
+const Info = model("Info", infoSchema);
 export default Info;
