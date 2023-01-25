@@ -3,26 +3,26 @@ import Admin from "../models/admin.js";
 
 class Controller{
 //for create 
-async createAdmin(req, res) {
+// async createAdmin(req, res) {
 
-    const body = req.body;
+  //   const body = req.body;
 
-    try {
+  //   try {
 
-      const doc = new Admin(body);
-      const new_date = await doc.save()
+  //     const doc = new Admin(body);
+  //     const new_date = await doc.save()
 
-      return res.status(200).json({ success: true, new_date });
-    }
+  //     return res.status(200).json({ success: true, new_date });
+  //   }
 
-    catch (err) {
-      return res.status(500).json({
-        status: 500,
-        success: false,
-        data: err.message
-      })
-    }
-  }
+  //   catch (err) {
+  //     return res.status(500).json({
+  //       status: 500,
+  //       success: false,
+  //       data: err.message
+  //     })
+  //   }
+  // }
 
 // for update 
 updateAdmin = async(req, res) => {
