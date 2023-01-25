@@ -8,19 +8,24 @@ createAdmin = async(req, res) => {
     }
     else{
         console.log("admin was created");
-        const post_admin= await admin.create(req.body)
-        console.log(post_admin)
-        return res.status(200).json(post_admin);
-    }
+        const createdAdmin= await admin.create(req.body)
+        console.log(createdAdmin)
+        return res.status(200).json(createdAdmin);
+    }   
     
 }
 
 
 getAdminById = async(req, res) => {
-    const id = req.params.id
+    const {id} = req.params
     try {
         const adminWithChosenId = await admin.findById(id);
-        
+        if(!id)
+            return res.status(404).json({
+                status:404,
+                success:false,
+                data:`admin with id=${id} doesn't exist` 
+        })
         return res.status(200).json({
             status:200,
             success:true,
@@ -28,28 +33,34 @@ getAdminById = async(req, res) => {
         })
         
     } catch(error){
-        return res.status(500).json({ 
+        return res.status(500).json({   //why 500 ? error with internal server
             status:500,
             success:false,
-            data:adminWithChosenId
+            data:adminWithChosenId     // do we want all these returned? 
          })
     }
 }
 
 
-listAdmins = async(req, res) => {
+async listAdmins (req,res){
     try {
        
-        let new_admin = await admin.find();
-        console.log("admin ",new_admin)
-        return res.status(200).send(new_admin)
-    } 
-    catch(error)
-    { 
-        return res.json({ error: error.message })
+        const allAdmins = await admin.find();
+        console.log("admin ",allAdmins)
+        return res.status(200).json({
+            status:200,
+            success:true,
+            data: allAdmins
+        })
     }
-}
-}
-
+        catch(error)
+    { 
+        return res.json({ 
+            status:500,
+            success:false,
+            data:error
+         })
+    }
+}}
 const controller = new Controller()
 export default controller;

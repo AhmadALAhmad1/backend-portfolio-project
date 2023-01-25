@@ -28,7 +28,7 @@ const adminSchema = new Schema(
     },
 
     {
-        collection: 'admins',
+        collection: 'admin',
         timestamps: true,
     }
 
