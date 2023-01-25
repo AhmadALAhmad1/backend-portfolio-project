@@ -17,7 +17,7 @@ const infoSchema = new Schema(
     },
     Url: {
       type: String,
-      require: true,
+      
     },
     image: {
       type: String,
