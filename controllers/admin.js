@@ -1,7 +1,7 @@
 import admin from "../models/admin.js"
 
 class Controller{
-    
+// to creat an admin 
 createAdmin = async(req, res) => {
     if(!req.body){
         res.status(400).json({message:error})
@@ -15,7 +15,7 @@ createAdmin = async(req, res) => {
     
 }
 
-
+// for geting an admin
 getAdminById = async(req, res) => {
     const {id} = req.params
     try {
@@ -40,8 +40,42 @@ getAdminById = async(req, res) => {
          })
     }
 }
+// for update
+updateAdmin = async(req, res) => {
+    
+  const id = parseInt(req.params.id)
+  
+  try {
+      
+   
+      return res.status(200).json({status:200 , message:`${Admin()}`})
+      
+  } 
+  catch(error){
+      return res.json({ error: error.message })
+  }
+}
 
+// for delete
+async deleteAdmin (req, res, next) {
+  let { id } = req.params;
+  const find = await Admin.findById(id);
+  if (!find) {
+    return res.status(404).json({
+      status: 404,
+      success: false,
+      message: "not found"
+    })
+  }
+  const result = await find.delete();
 
+  return res.status(200).json({
+    status: 200,
+    success: true,
+    message: "deleted successfully"
+  })
+}
+// for listing all admins
 async listAdmins (req,res){
     try {
        
