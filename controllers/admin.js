@@ -42,19 +42,16 @@ getAdminById = async(req, res) => {
 }
 // for update
 updateAdmin = async(req, res) => {
-    
-  const id = parseInt(req.params.id)
-  
-  try {
-      
-   
-      return res.status(200).json({status:200 , message:`${Admin()}`})
-      
-  } 
-  catch(error){
-      return res.json({ error: error.message })
+    let { id } = req.params; let body = req.body;
+    admin.updateOne({ _id: id }, {
+      $set: body
+    },
+
+      (err, response) => {
+        if (err) return next(err);
+        res.status(200).json({ success: true, data: body, message: `Updated successfuly` });
+      });
   }
-}
 
 // for delete
 async deleteAdmin (req, res, next) {
