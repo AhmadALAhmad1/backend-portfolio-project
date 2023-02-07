@@ -1,5 +1,5 @@
 import admin from "../models/admin.js"
-
+//empty comment
 class Controller{
     
 createAdmin = async(req, res) => {
