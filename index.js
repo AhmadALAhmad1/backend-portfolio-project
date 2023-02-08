@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import infoRouter from './routes/info.js';
+import adminRouter from './routes/admin.js';
 import multer from 'multer';
 import path from 'path';
 import uploadImgRouter from './routes/upload_img.js';
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/info', infoRouter);
+app.use('/api/admin', adminRouter);
 app.use('/api/UploadImage', uploadImgRouter);
 
 app.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} on port ${PORT}!!!`))
