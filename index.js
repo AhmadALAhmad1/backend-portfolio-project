@@ -1,3 +1,4 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
@@ -9,15 +10,16 @@ import path from 'path';
 import uploadImgRouter from './routes/upload_img.js';
 import cors from 'cors';
 
-
 dotenv.config();
 await connectDB();
 
 const PORT = process.env.PORT || 5000;
 
 const app = new express();
+app.use(express.json());
+// app.use(express.urlencoded({ extended: false }))
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development"){
     app.use(morgan('dev'));
 }
 
@@ -27,9 +29,10 @@ app.use(cors());
 //middle ware
 app.use('/images', express.static('public/images'));
 
-app.get('/', (req, res) => {
-    res.send('API is running...')
-})
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 
 app.use('/api/info', infoRouter);
 app.use('/api/admin', adminRouter);

@@ -97,4 +97,4 @@ class Controller {
     }
 }
 const controller = new Controller()
-export default controller;
+export default controllers;
