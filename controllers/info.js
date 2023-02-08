@@ -1,8 +1,5 @@
+import multer from "multer";
 import Model from "../models/info.js";
-
-
-//fix create response
-//fix updateone func
 
 
 class Controller {
@@ -20,11 +17,12 @@ class Controller {
     } catch (err) {
       return res.status(500).json({
         status: 500,
-        success: true,
+        success: false,
         data: err
       })
     }
   }
+
 
   //get an info by id
   async get(req, res, next) {
@@ -60,11 +58,6 @@ class Controller {
 
     const body = req.body;
 
-    // if (!body.title) res.status(400).send({ success: false, response: "title is required" });
-    // if (!body.description) res.status(400).send({ success: false, response: "description is required" });
-    // if (!body.name) res.status(400).send({ success: false, response: "name is required" });
-    // if (!body.Url) res.status(400).send({ success: false, response: "Url is required" });
-    // if (!body.section) res.status(400).send({ success: false, response: "section is required" });
 
     try {
 
@@ -85,7 +78,7 @@ class Controller {
 
 
 
-  //update an author by _id
+  //update info 
   put(req, res, next) {
     let { id } = req.params; let body = req.body;
     Model.updateOne({ _id: id }, {
@@ -99,26 +92,6 @@ class Controller {
   }
 
   // update an info by _id
-
-  // async put(req, res, next) {
-  //   let { id } = req.params;
-  //   let body = req.body;
-
-  //   try {
-  //     await Model.updateOne({ _id: id }, { $set: body }, (err, response) => {
-  //       if (err) return next(err);
-  //       res.status(200).send({ success: true, message: `updated successfuly`, response });
-  //     });
-
-  //   }
-  //   catch (err) {
-  //     return res.status(500).json({
-  //       status: 500,
-  //       success: false,
-  //       data: err
-  //     })
-  //   }
-  // }
 
 
   //delete info by id
@@ -141,6 +114,9 @@ class Controller {
       message: "deleted successfully"
     })
   }
+
+  //multer func.
+
 
 
 }
