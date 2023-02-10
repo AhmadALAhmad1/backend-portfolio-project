@@ -1,4 +1,4 @@
-import admin from "../models/admin.js"
+import Admin from "../models/admin.js"
 
 class Controller{
 // to creat an admin 
@@ -8,7 +8,7 @@ createAdmin = async(req, res) => {
     }
     else{
         console.log("admin was created");
-        const createdAdmin= await admin.create(req.body)
+        const createdAdmin= await Admin.create(req.body)
         console.log(createdAdmin)
         return res.status(200).json(createdAdmin);
     }   
@@ -19,7 +19,7 @@ createAdmin = async(req, res) => {
 getAdminById = async(req, res) => {
     const {id} = req.params
     try {
-        const adminWithChosenId = await admin.findById(id);
+        const adminWithChosenId = await Admin.findById(id);
         if(!id)
             return res.status(404).json({
                 status:404,
@@ -79,7 +79,7 @@ async deleteAdmin (req, res, next) {
 async listAdmins (req,res){
     try {
        
-        const allAdmins = await admin.find();
+        const allAdmins = await Admin.find();
         console.log("admin ",allAdmins)
         return res.status(200).json({
             status:200,

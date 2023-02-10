@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import connectDB from './config/db.js';
 import adminRouter from './routes/admin.js';
 import infoRouter from './routes/info.js';
-
+import cors from 'cors'
 dotenv.config();
 await connectDB();
 
@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 5000;
 
 const app = new express();
 app.use(express.json());
+app.use(cors());
+
 // app.use(express.urlencoded({ extended: false }))
 
 if (process.env.NODE_ENV === "development") {
@@ -20,7 +22,6 @@ if (process.env.NODE_ENV === "development") {
 
 
 app.use(express.json());
-
 app.get('/', (req, res) => {
     res.send('API is running...')
 })
